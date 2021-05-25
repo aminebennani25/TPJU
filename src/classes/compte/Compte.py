@@ -37,4 +37,3 @@ class Compte(object, metaclass=ABCMeta):
     @abstractmethod
     def crediter(self, montant: int):
         pass
-

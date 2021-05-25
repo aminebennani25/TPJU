@@ -1,11 +1,13 @@
 
 import unittest
-from src.classes.compte.compte import Compte
+from src.classes.compte.Courant import Courant
+from src.classes.compte.Epargne import Epargne
 
 
 class TestCompte(unittest.TestCase):
     def setUp(self):
-        self.compte = Compte(numCompte=523, solde=1000)
+        self.compte = Courant(numCompte=523, solde=1000)
+        self.epargne = Epargne(numCompte=1224, solde=1000, taux=10)
 
 
 class TestGetter(TestCompte):
@@ -18,6 +20,9 @@ class TestGetter(TestCompte):
     def test_getClient(self):
         self.assertIsNone(self.compte.getClient(), True)
 
+    def test_getTaux(self):
+        self.assertEqual(self.epargne.getTaux(), 10)
+
 
 class TestSetter(TestCompte):
     def test_setNumCompte(self):
@@ -27,6 +32,10 @@ class TestSetter(TestCompte):
     def test_setSolde(self):
         self.compte.setSolde(500)
         self.assertEqual(self.compte.solde, 500)
+
+    def test_setTaux(self):
+        self.epargne.setTaux(10)
+        self.assertEqual(self.epargne.taux, 10)
 
 
 class TestNotEqual(TestCompte):
@@ -47,6 +56,14 @@ class TestMethod(TestCompte):
     def test_debiter(self):
         self.compte.debiter(montant=200)
         self.assertEqual(self.compte.solde, 800)
+
+    def test_calculInteret(self):
+        interet = self.epargne.calculInterets()
+        self.assertEqual(interet, 100)
+
+    def test_epargne(self):
+        solde = self.epargne.getNewSolde()
+        self.assertEqual(solde, 1100)
 
 
 class TestMethodException(TestCompte):

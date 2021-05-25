@@ -1,10 +1,12 @@
 import unittest
-from .client import Client
+from .Client import Client
+from ..compte.Courant import Courant
 
 
 class TestClient(unittest.TestCase):
     def setUp(self):
         self.client = Client(id=1, nom="toto")
+        self.compte = Courant(numCompte=12, solde=1000)
 
 
 class TestGetter(TestClient):
@@ -23,8 +25,8 @@ class TestGetter(TestClient):
     def test_getTelephone(self):
         self.assertIsNone(self.client.getTelephone(), True)
 
-    def test_getComptes(self):
-        self.assertEqual(len(self.client.getComptes()), 0)
+    def test_getCompte(self):
+        self.assertEqual(len(self.client.getCompte()), 0)
 
 
 class TestSetter(TestClient):
@@ -48,9 +50,9 @@ class TestSetter(TestClient):
         self.client.setTelephone("0606060606")
         self.assertEqual(self.client.telephone, "0606060606")
 
-    def test_setComptes(self):
-        self.client.setComptes([1, 2, 3])
-        self.assertEqual(self.client.comptes, [1, 2, 3])
+    def test_setCompte(self):
+        self.client.setCompte(self.compte)
+        self.assertEqual(self.client.comptes, [12])
 
 
 class TestNotEqual(TestClient):

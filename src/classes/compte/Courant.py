@@ -20,5 +20,3 @@ class Courant(Compte):
             self.solde += montant
         else:
             raise Exception("TypeError")
-
-

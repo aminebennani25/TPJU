@@ -16,7 +16,7 @@ class Epargne(Compte):
     def calculInterets(self) -> float:
         return self.solde * self.taux / 100
 
-    def GetNewSolde(self) -> float:
+    def getNewSolde(self) -> float:
         self.solde += self.calculInterets()
         return self.solde
 
@@ -25,8 +25,3 @@ class Epargne(Compte):
 
     def crediter(self, montant: int):
         pass
-
-
-
-
-

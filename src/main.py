@@ -21,9 +21,3 @@ if __name__ == "__main__":
 
     print("Compte Courant: n°{} - solde: {}".format(c.getNumCompte(), c.getSolde()))
     print("Compte Epargne n°{} - solde: {}".format(e.getNumCompte(), e.getSolde()))
-
-
-
-
-
-
